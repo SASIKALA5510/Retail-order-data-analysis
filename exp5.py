@@ -168,10 +168,10 @@ cast(((p.sale_price - p.cost_price)/p.sale_price * 100)as decimal (15,2))as prof
 from orders o join products p on o.order_id = p.order_id
 order by profit_margin desc
 limit 10'''},
-                {"Question":"Get total revenue for each year","query":'''select substr(o.order_date,-4)as order_year,
-cast(sum(p.sale_price * p.quantity)as decimal(15,2)) as total_revenue
+                {"Question":"Get total profit for each year","query":'''select substr(o.order_date,-4)as order_year,
+cast(sum(p.profit)as decimal(15,2)) as total_profit
 from orders o 
-join products p 
+inner join products p 
 on o.order_id = p.order_id
 group by order_year'''},
                 {"Question":"Retrieve all orders with corresponding product information","query":'''select o.order_id,o.order_date,p.product_id,p.sub_category,p.cost_price,p.list_price
